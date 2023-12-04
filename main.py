@@ -1,4 +1,6 @@
 from requests_html import HTMLSession
+import csv
+
 session = HTMLSession()
 
 url = 'https://business.inquirer.net/category/latest-stories'
@@ -30,4 +32,11 @@ for i in news_list:
     date_published = i['date']
     new_entry = [title, link, date_published]
     data.append(new_entry)
+
+filename = r"D:\Documents\Finance News.csv"
+
+with open(filename, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
 
