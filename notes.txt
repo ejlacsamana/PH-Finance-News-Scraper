@@ -1,0 +1,7 @@
+Functionalities:
+
+1. Scrape headlines, links, and publish dates from Business Inquirer
+2. Save these to a csv file
+3. Scrape each news articles, write a summary, and save it to csv file
+4. Rank each summary based on my personal interest (stock markets, effect of global economy to the Philippines, one-man business models, and financial tech)
+5. I don't know what's the best approach yet to reinforce reading these. My initial idea is to send the top 5 to 10 articles and their summaries to my email. I want the reading to have less friction. ChatGPT suggested a push notification to phone.
