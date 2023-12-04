@@ -19,3 +19,15 @@ for i in range(2, 5):
         }
         news_list.append(news_article)
     url = f'https://business.inquirer.net/category/latest-stories/page/{i}'
+
+data = [
+    ["Headline", "Link", "Date Published"]
+]
+
+for i in news_list:
+    title = i['title']
+    link = i['link'].pop()
+    date_published = i['date']
+    new_entry = [title, link, date_published]
+    data.append(new_entry)
+
