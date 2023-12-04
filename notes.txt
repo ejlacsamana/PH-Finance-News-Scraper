@@ -5,3 +5,11 @@ Functionalities:
 3. Scrape each news articles, write a summary, and save it to csv file
 4. Rank each summary based on my personal interest (stock markets, effect of global economy to the Philippines, one-man business models, and financial tech)
 5. I don't know what's the best approach yet to reinforce reading these. My initial idea is to send the top 5 to 10 articles and their summaries to my email. I want the reading to have less friction. ChatGPT suggested a push notification to phone.
+
+Enhancements:
+
+1. Object-Oriented Programming
+
+Expansion:
+
+1. Scalability to other news websites and topics
