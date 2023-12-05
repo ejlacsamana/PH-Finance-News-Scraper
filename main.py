@@ -1,6 +1,5 @@
 from requests_html import HTMLSession
 import csv
-import random
 
 session = HTMLSession()
 
@@ -39,3 +38,4 @@ filename = r'D:\Documents\Finance News.csv'
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(data)
+
