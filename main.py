@@ -1,5 +1,6 @@
 from requests_html import HTMLSession
 import csv
+import pandas as pd
 
 session = HTMLSession()
 
@@ -39,3 +40,7 @@ with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(data)
 
+df = pd.read_csv(filename, encoding='ISO-8859-1')
+for i, row in df.iterrows():
+    link = row[1]
+    
