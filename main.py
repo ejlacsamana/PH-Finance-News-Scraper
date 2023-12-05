@@ -43,4 +43,13 @@ with open(filename, 'w', newline='') as file:
 df = pd.read_csv(filename, encoding='ISO-8859-1')
 for i, row in df.iterrows():
     link = row[1]
-    
+    r = session.get(link)
+    scraped_content = r.html.find('p')
+    first_element = scraped_content[1]
+    news_content = first_element.text
+    print(news_content)
+    r.close()
+    print(len(scraped_content))
+    # Loop on the scraped content
+    # Append to list each line
+    # If statements link if blank or unnecessary sentence
