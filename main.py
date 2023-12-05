@@ -1,5 +1,5 @@
 from requests_html import HTMLSession
-import csv
+import openpyxl
 import pandas as pd
 
 session = HTMLSession()
@@ -23,9 +23,7 @@ for i in range(2, 5):
         news_list.append(news_article)
     url = f'https://business.inquirer.net/category/latest-stories/page/{i}'
 
-data = [
-    ['Headline', 'Link', 'Date Published']
-]
+data = []
 
 for i in news_list:
     title = i['title']
@@ -34,22 +32,28 @@ for i in news_list:
     new_entry = [title, link, date_published]
     data.append(new_entry)
 
-filename = r'D:\Documents\Finance News.csv'
+filename = r'D:\Documents\Finance News.xlsx'
 
-with open(filename, 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerows(data)
+df = pd.DataFrame(data, columns=['Headline', 'Link', 'Date Published'])
+df.to_excel(filename, index=False)
 
-df = pd.read_csv(filename, encoding='ISO-8859-1')
+
+df = pd.read_excel(filename)
 for i, row in df.iterrows():
     link = row[1]
     r = session.get(link)
     scraped_content = r.html.find('p')
     first_element = scraped_content[1]
     news_content = first_element.text
-    print(news_content)
     r.close()
-    print(len(scraped_content))
-    # Loop on the scraped content
-    # Append to list each line
-    # If statements link if blank or unnecessary sentence
+    article_content = []
+    for element in scraped_content:
+        text = element.text
+        if 'Subscribe to our daily newsletter' in text or 'By providing an email address. I agree to the Terms of Use and acknowledge that I have read the Privacy Policy.' in text or 'Subscribe to our business news' in text or 'We use cookies to ensure you get the best experience on our website.' in text or 'READ: ' in text or '/File photo' in text or text == '':
+            pass
+        else:
+            article_content.append(text)
+    merged_content = '\n'.join(article_content)
+    df.at[i, 'Content'] = merged_content
+
+df.to_excel(filename, index=False)
